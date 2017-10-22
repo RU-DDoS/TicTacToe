@@ -14,14 +14,19 @@ public class TTTService {
 		}
 	}
 
-	public void makeMove(int val) {
+	public boolean makeMove(int val) {
 		if(val < 1 || val > 9) {
 			throw new IllegalArgumentException("Element out of range, please stick to 1-9");
 		}
-		
+
+		if(board[val-1] == 'x' || board[val-1] == 'o') {
+			return false;
+		}
+
 		board[val-1] = player ? 'x' : 'o';
 		player = !player;
 		moves++;
+		return true;
 	}
 
 

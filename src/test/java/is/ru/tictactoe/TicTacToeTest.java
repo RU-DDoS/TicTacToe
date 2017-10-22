@@ -34,4 +34,12 @@ public class TicTacToeTest {
 		game.makeMove(2);
 		assertEquals('o', game.getValue(2));
 	}
+
+	@Test
+	public void testAlreadyUsedLocation() {
+		TTTService game = new TTTService();
+		game.makeMove(1);
+		assertEquals(false, game.makeMove(1));
+		
+	}
 }
