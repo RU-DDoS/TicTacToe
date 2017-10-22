@@ -8,6 +8,7 @@ public class TTTService {
 
 	public TTTService() {
 		player = true;
+		winner = 'n';
 		moves = 0;
 		board = new char[9];
 		for(int i = 0; i < 9; i++) {
@@ -19,6 +20,7 @@ public class TTTService {
 		validateInput(val);
 		if(validateLocation(val)) {
 			board[val-1] = player ? 'x' : 'o';
+			checkIfWinner();
 			player = !player;
 			moves++;
 			return true;
@@ -40,30 +42,7 @@ public class TTTService {
 	}
 
 	public boolean hasWinner() {
-		for(int i = 0; i < 9; i += 3) {
-			if(board[i] == board[i + 1] && board[i] == board[i + 2]) {
-				winner = board[i];
-				return true;
-			}
-		}
-
-		for(int i = 0; i < 3; i++) {
-			if(board[i] == board[i + 3] && board[i] == board[i + 6]) {
-				winner = board[i];
-				return true;
-			}
-		}
-
-		if(board[0] == board[4] && board[0] == board[8]) {
-			winner = board[0];
-			return true;
-		}
-		if(board[2] == board[4] && board[0] == board[6]) {
-			winner = board[0];
-			return true;
-		}
-
-		return false;
+		return winner != 'n' ? true : false;
 	}
 
 	public char getWinner() {
@@ -85,5 +64,26 @@ public class TTTService {
 			return false;
 		}
 		return true;
+	}
+
+	private void checkIfWinner() {
+		for(int i = 0; i < 9; i += 3) {
+			if(board[i] == board[i + 1] && board[i] == board[i + 2]) {
+				winner = board[i];
+			}
+		}
+
+		for(int i = 0; i < 3; i++) {
+			if(board[i] == board[i + 3] && board[i] == board[i + 6]) {
+				winner = board[i];
+			}
+		}
+
+		if(board[0] == board[4] && board[0] == board[8]) {
+			winner = board[0];
+		}
+		if(board[2] == board[4] && board[0] == board[6]) {
+			winner = board[0];
+		}
 	}
 }
