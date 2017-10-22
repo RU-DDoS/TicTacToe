@@ -1,0 +1,11 @@
+apply plugin: 'java'
+apply plugin: 'application'
+
+mainClassName = "is.ru.tictactoe.TicTacToe"
+
+repositories {
+	jcenter()
+}
+
+dependencies {
+}
