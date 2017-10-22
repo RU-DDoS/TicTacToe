@@ -26,4 +26,12 @@ public class TicTacToeTest {
 		game.makeMove(1);
 		assertEquals('x', game.getValue(1));
 	}
+
+	@Test
+	public void testMakeMoveAsO() {
+		TTTService game = new TTTService();
+		game.makeMove(1);
+		game.makeMove(2);
+		assertEquals('o', game.getValue(2));
+	}
 }
