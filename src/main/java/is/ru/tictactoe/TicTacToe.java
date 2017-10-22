@@ -7,8 +7,9 @@ public class TicTacToe {
     public static void main(String[] args) {
     	TTTService game = new TTTService();
    		System.out.println("Welcome to Tic Tac Toe!");
+   		boolean keepPlaying = true;
 
-    	while(true) {
+    	while(keepPlaying) {
     		printBoard(game.getBoard());
     		char player = game.getPlayer();
 
@@ -30,13 +31,36 @@ public class TicTacToe {
 
 	    	if(game.checkDraw()) {
 	    		System.out.println("There is a draw!.\n");
-	    		break;
+	    		game.newGame();
+	    		keepPlaying = keepPlaying();
 	    	}
 	    	if(game.hasWinner()) {
 	    		System.out.println("Player " + game.getWinner() + " wins! \n");
-	    		break;
+	    		game.newGame();
+	    		keepPlaying = keepPlaying();
 	    	}
     	}
+    }
+
+    private static boolean keepPlaying() {
+    	char input = ' ';
+    	while(input != 'y' || input != 'n') {
+	    	System.out.println("Start a new game? (y/n)\n");
+
+	    	Scanner scan = new Scanner(System.in);
+			String inputString = scan.nextLine();
+			input = inputString.charAt(0);
+
+			if(input == 'y') {
+				return true;
+			}
+			if(input == 'n') {
+				return false;
+			}
+
+			System.out.println("Invalid input!\n");
+		}
+		return false;
     }
 
     private static void printBoard(char[] board) {
