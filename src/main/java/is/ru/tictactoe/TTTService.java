@@ -15,22 +15,31 @@ public class TTTService {
 	}
 
 	public boolean makeMove(int val) {
+		validateInput(val);
+		if(validateLocation(val)) {
+			board[val-1] = player ? 'x' : 'o';
+			player = !player;
+			moves++;
+			return true;
+		}
+		return false;
+	}
+
+	public char getValue(int index) {
+		validateInput(index);
+		return board[index-1];
+	}
+
+	private void validateInput(int val) {
 		if(val < 1 || val > 9) {
 			throw new IllegalArgumentException("Element out of range, please stick to 1-9");
 		}
+	}
 
+	private boolean validateLocation(int val) {
 		if(board[val-1] == 'x' || board[val-1] == 'o') {
 			return false;
 		}
-
-		board[val-1] = player ? 'x' : 'o';
-		player = !player;
-		moves++;
 		return true;
-	}
-
-
-	public char getValue(int index) {
-		return board[index-1];
 	}
 }
