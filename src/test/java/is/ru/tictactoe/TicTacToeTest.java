@@ -48,4 +48,15 @@ public class TicTacToeTest {
 		TTTService game = new TTTService();
 		assertEquals('x', game.getPlayer());
 	}
+
+	@Test
+	public void testHorizontalWin() {
+		TTTService game = new TTTService();
+		game.makeMove(1);
+		game.makeMove(4);
+		game.makeMove(2);
+		game.makeMove(5);
+		game.makeMove(3);
+		assertEquals(true, game.hasWinner());
+	}
 }

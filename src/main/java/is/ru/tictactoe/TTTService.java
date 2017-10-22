@@ -4,6 +4,7 @@ public class TTTService {
 	private boolean player;
 	private char[] board;
 	private int moves;
+	private char winner;
 
 	public TTTService() {
 		player = true;
@@ -36,6 +37,17 @@ public class TTTService {
 
 	public char[] getBoard() {
 		return board;
+	}
+
+	public boolean hasWinner() {
+		for(int i = 0; i < 9; i += 3) {
+			if(board[i] == board[i + 1] && board[i] == board[i + 2]) {
+				winner = board[i];
+				return true;
+			}
+		}
+
+		return false;
 	}
 
 	private void validateInput(int val) {
