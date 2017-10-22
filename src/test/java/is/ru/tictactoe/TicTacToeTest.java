@@ -13,4 +13,11 @@ public class TicTacToeTest {
 			assertEquals("Element out of range, please stick to 1-9", e.getMessage());
 		}
 	}
+
+	@Test
+	public void testGetValue() {
+		TTTService game = new TTTService();
+		assertEquals('1', game.getValue(1));
+	}
+
 }
