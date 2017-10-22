@@ -27,6 +27,15 @@ public class TicTacToe {
 	    	} catch (IllegalArgumentException e) {
 	    		System.out.println(e.getMessage() + "\n");
 	    	}
+
+	    	if(game.checkDraw()) {
+	    		System.out.println("There is a draw!.\n");
+	    		break;
+	    	}
+	    	if(game.hasWinner()) {
+	    		System.out.println("Player " + game.getWinner() + " wins! \n");
+	    		break;
+	    	}
     	}
     }
 

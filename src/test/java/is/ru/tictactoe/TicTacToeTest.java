@@ -48,4 +48,64 @@ public class TicTacToeTest {
 		TTTService game = new TTTService();
 		assertEquals('x', game.getPlayer());
 	}
+
+	@Test
+	public void testHorizontalWin() {
+		TTTService game = new TTTService();
+		game.makeMove(1);
+		game.makeMove(4);
+		game.makeMove(2);
+		game.makeMove(5);
+		game.makeMove(3);
+		assertEquals(true, game.hasWinner());
+	}
+
+	@Test
+	public void testVerticalWin() {
+		TTTService game = new TTTService();
+		game.makeMove(1);
+		game.makeMove(2);
+		game.makeMove(4);
+		game.makeMove(3);
+		game.makeMove(7);
+		assertEquals(true, game.hasWinner());
+	}
+
+	@Test
+	public void testCrossWin() {
+		TTTService game = new TTTService();
+		game.makeMove(1);
+		game.makeMove(2);
+		game.makeMove(5);
+		game.makeMove(3);
+		game.makeMove(9);
+		assertEquals(true, game.hasWinner());
+	}
+
+	@Test
+	public void testDraw() {
+		TTTService game = new TTTService();
+		game.makeMove(1);
+		game.makeMove(3);
+		game.makeMove(2);
+		game.makeMove(5);
+		game.makeMove(4);
+		game.makeMove(7);
+		game.makeMove(6);
+		game.makeMove(9);
+		game.makeMove(8);
+		assertEquals(true, game.checkDraw());
+	}
+
+	@Test
+	public void testGetWinner() {
+		TTTService game = new TTTService();
+		game.makeMove(1);
+		game.makeMove(4);
+		game.makeMove(2);
+		game.makeMove(5);
+		game.makeMove(3);
+		game.hasWinner();
+		assertEquals('x', game.getWinner());
+	}
 }
