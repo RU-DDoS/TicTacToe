@@ -18,7 +18,12 @@ public class TTTService {
 		if(val < 1 || val > 9) {
 			throw new IllegalArgumentException("Element out of range, please stick to 1-9");
 		}
+		
+		board[val-1] = player ? 'x' : 'o';
+		player = !player;
+		moves++;
 	}
+
 
 	public char getValue(int index) {
 		return board[index-1];
