@@ -108,4 +108,12 @@ public class TicTacToeTest {
 		game.hasWinner();
 		assertEquals('x', game.getWinner());
 	}
+
+	@Test
+	public void testNewGame() {
+		TTTService game = new TTTService();
+		game.makeMove(1);
+		game.newGame();
+		assertEquals('1', game.getValue(1));
+	}
 }
