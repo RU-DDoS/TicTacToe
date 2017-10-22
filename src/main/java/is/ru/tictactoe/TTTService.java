@@ -47,6 +47,13 @@ public class TTTService {
 			}
 		}
 
+		for(int i = 0; i < 3; i++) {
+			if(board[i] == board[i + 3] && board[i] == board[i + 6]) {
+				winner = board[i];
+				return true;
+			}
+		}
+
 		return false;
 	}
 

@@ -59,4 +59,15 @@ public class TicTacToeTest {
 		game.makeMove(3);
 		assertEquals(true, game.hasWinner());
 	}
+
+	@Test
+	public void testVerticalWin() {
+		TTTService game = new TTTService();
+		game.makeMove(1);
+		game.makeMove(2);
+		game.makeMove(4);
+		game.makeMove(3);
+		game.makeMove(7);
+		assertEquals(true, game.hasWinner());
+	}
 }
