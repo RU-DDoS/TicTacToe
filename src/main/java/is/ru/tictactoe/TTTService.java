@@ -30,6 +30,14 @@ public class TTTService {
 		return board[index-1];
 	}
 
+	public char getPlayer() {
+		return player ? 'x' : 'o'; 
+	}
+
+	public char[] getBoard() {
+		return board;
+	}
+
 	private void validateInput(int val) {
 		if(val < 1 || val > 9) {
 			throw new IllegalArgumentException("Element out of range, please stick to 1-9");
