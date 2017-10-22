@@ -96,4 +96,16 @@ public class TicTacToeTest {
 		game.makeMove(8);
 		assertEquals(true, game.checkDraw());
 	}
+
+	@Test
+	public void testGetWinner() {
+		TTTService game = new TTTService();
+		game.makeMove(1);
+		game.makeMove(4);
+		game.makeMove(2);
+		game.makeMove(5);
+		game.makeMove(3);
+		game.hasWinner();
+		assertEquals('x', game.getWinner());
+	}
 }

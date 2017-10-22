@@ -66,6 +66,10 @@ public class TTTService {
 		return false;
 	}
 
+	public char getWinner() {
+		return winner;
+	}
+
 	public boolean checkDraw() {
 		return moves == 9 ? true : false;
 	}
