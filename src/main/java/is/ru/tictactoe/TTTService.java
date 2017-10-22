@@ -54,18 +54,20 @@ public class TTTService {
 			}
 		}
 
-		if(board[0] == board[4] && board[0] == board[8])
-		{
+		if(board[0] == board[4] && board[0] == board[8]) {
 			winner = board[0];
 			return true;
 		}
-		if(board[2] == board[4] && board[0] == board[6])
-		{
+		if(board[2] == board[4] && board[0] == board[6]) {
 			winner = board[0];
 			return true;
 		}
 
 		return false;
+	}
+
+	public boolean checkDraw() {
+		return moves == 9 ? true : false;
 	}
 
 	private void validateInput(int val) {

@@ -81,4 +81,19 @@ public class TicTacToeTest {
 		game.makeMove(9);
 		assertEquals(true, game.hasWinner());
 	}
+
+	@Test
+	public void testDraw() {
+		TTTService game = new TTTService();
+		game.makeMove(1);
+		game.makeMove(3);
+		game.makeMove(2);
+		game.makeMove(5);
+		game.makeMove(4);
+		game.makeMove(7);
+		game.makeMove(6);
+		game.makeMove(9);
+		game.makeMove(8);
+		assertEquals(true, game.checkDraw());
+	}
 }
