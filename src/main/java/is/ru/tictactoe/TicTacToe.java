@@ -23,10 +23,10 @@ public class TicTacToe {
                 Integer index = map.get("index").integerValue();
                 char player = game.getPlayer();
                 if(game.makeMove(index)) {
-                    if(game.checkDraw()) {
-                        return "d" + player;
-                    } else if(game.hasWinner()) {
+                    if(game.hasWinner()) {
                         return "w" + player;
+                    } else if(game.checkDraw()) {
+                        return "d" + player;
                     }
                     return "k" + player;
                 }
