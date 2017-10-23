@@ -1,5 +1,6 @@
 apply plugin: 'java'
 apply plugin: 'application'
+apply plugin: 'jacoco'
 
 mainClassName = "is.ru.tictactoe.TicTacToe"
 
@@ -14,3 +15,11 @@ dependencies {
 
 task stage (dependsOn: installDist) {
 }
+
+jacocoTestReport {
+    reports {
+        xml.enabled true
+        html.enabled false
+    }
+}
+check.dependsOn jacocoTestReport
