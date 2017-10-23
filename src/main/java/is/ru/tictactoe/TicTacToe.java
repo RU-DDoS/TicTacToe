@@ -5,7 +5,7 @@ import java.lang.StringBuilder;
 import java.io.InputStreamReader;
 import java.io.InputStream;
 import spark.QueryParamsMap;
-import java.util.Scanner;
+import static spark.Spark.*;
 
 public class TicTacToe {
     public static void main(String[] args) {
