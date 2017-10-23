@@ -7,13 +7,8 @@ public class TTTService {
 	private char winner;
 
 	public TTTService() {
-		player = true;
-		winner = 'n';
-		moves = 0;
 		board = new char[9];
-		for(int i = 0; i < 9; i++) {
-			board[i] = (char)(i + '1');
-		}
+		newGame();
 	}
 
 	public boolean makeMove(int val) {
@@ -51,6 +46,15 @@ public class TTTService {
 
 	public boolean checkDraw() {
 		return moves == 9 ? true : false;
+	}
+
+	public void newGame() {
+		player = true;
+		winner = 'n';
+		moves = 0;
+		for(int i = 0; i < 9; i++) {
+			board[i] = (char)(i + '1');
+		}
 	}
 
 	private void validateInput(int val) {
