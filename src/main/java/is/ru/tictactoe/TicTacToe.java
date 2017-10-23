@@ -21,7 +21,25 @@ public class TicTacToe {
             QueryParamsMap map = req.queryMap();
             try {
                 Integer index = map.get("index").integerValue();
-                return index;
+                char player = game.getPlayer();
+                if(game.makeMove(index)) {
+                    if(game.checkDraw()) {
+                        return "d" + player;
+                    } else if(game.hasWinner()) {
+                        return "w" + player;
+                    }
+                    return "k" + player;
+                }
+                return "n" + player;
+            }
+            catch (Exception e){
+                return "Error: " + e.getMessage();
+            }
+        });
+        get("/api/newgame", (req, res) -> {
+            try {
+                game.newGame();
+                return 1;
             }
             catch (Exception e){
                 return "Error: " + e.getMessage();

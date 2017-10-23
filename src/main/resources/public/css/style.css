@@ -46,6 +46,7 @@ body {
   background: rgba(124, 241, 46, 0.5);
   bottom: 0;
   display: none;
+  flex-direction: column;
   justify-content: center;
   left: 0;
   position: absolute;
@@ -60,6 +61,24 @@ body {
 .gamebox-wintext {
   color: #fff;
   font-size: 20px;
+  text-shadow: 1px 1px 3px 0 rgba(0, 0, 0, 0.1);
+}
+
+.winbox-button {
+  background: #fff;
+  border: 0;
+  border-radius: 2px;
+  color: rgb(124, 241, 46);
+  font-size: 18px;
+  padding: 10px 40px;
+  transition: all 0.1s;
+  -webkit-transition: all 0.1s;
+}
+
+.winbox-button:hover,
+.winbox-button:focus {
+  background: #eee;
+  cursor: pointer;
 }
 
 .game-button {
