@@ -10,7 +10,7 @@ public class TicTacToe {
    		boolean keepPlaying = true;
 
     	while(keepPlaying) {
-    		printBoard(game.getBoard()););
+    		printBoard(game.getBoard());
     		char player = game.getPlayer();
 
     		System.out.println("Now playing: " + player);
