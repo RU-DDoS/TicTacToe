@@ -15,3 +15,5 @@ notifications:
       - andris16@ru.is
     on_success: never # default: change
     on_failure: always # default: always
+after_success:
+  - bash <(curl -s https://codecov.io/bash)
