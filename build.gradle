@@ -7,10 +7,10 @@ repositories {
 	jcenter()
 }
 
-run{
-    standardInput = System.in
+dependencies {
+	compile 'com.sparkjava:spark-core:2.6.0'
+	testImplementation 'junit:junit:4.12'
 }
 
-dependencies {
-	testImplementation 'junit:junit:4.12'
+task stage (dependsOn: installDist) {
 }

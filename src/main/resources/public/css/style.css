@@ -1,0 +1,128 @@
+html {
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+}
+
+.game {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+}
+
+.game-headingbox {
+  align-items: center;
+  box-sizing: border-box;
+  display: flex;
+  justify-content: center;
+  margin: 0 20px 20px 20px;
+  max-width: 720px;
+  width: 100%;
+}
+
+.headingbox-heading {
+  color: #333;
+  font-size: 20px;
+  margin: 0;
+  padding: 30px 10px;
+}
+
+.game-gamebox {
+  background: #888;
+  box-sizing: border-box;
+  display: flex;
+  flex-wrap: wrap;
+  max-width: 500px;
+  padding: 5px;
+  position: relative;
+  width: 100%;
+}
+
+.gamebox-winbox {
+  align-items: center;
+  background: rgba(124, 241, 46, 0.5);
+  bottom: 0;
+  display: none;
+  flex-direction: column;
+  justify-content: center;
+  left: 0;
+  position: absolute;
+  right: 0;
+  top: 0;
+}
+
+.gamebox-winbox.is-active {
+  display: flex;
+}
+
+.gamebox-wintext {
+  color: #fff;
+  font-size: 20px;
+  text-shadow: 1px 1px 3px 0 rgba(0, 0, 0, 0.1);
+}
+
+.winbox-button {
+  background: #fff;
+  border: 0;
+  border-radius: 2px;
+  color: rgb(124, 241, 46);
+  font-size: 18px;
+  padding: 10px 40px;
+  transition: all 0.1s;
+  -webkit-transition: all 0.1s;
+}
+
+.winbox-button:hover,
+.winbox-button:focus {
+  background: #eee;
+  cursor: pointer;
+}
+
+.game-button {
+  align-items: center;
+  background: #fff;
+  border: 0;
+  border-radius: 2px;
+  box-sizing: border-box;
+  color: #333;
+  display: flex;
+  font-size: 36px;
+  height: 142px;
+  justify-content: center;
+  margin: 1%;
+  transition: all 0.2s ease-out;
+  -webkit-transition: all 0.2s ease-out;
+  width: 31.3%;
+}
+
+.game-button:hover,
+.game-button:focus {
+  background: #eee;
+  cursor: pointer;
+  outline: none;
+}
+
+.game-messagebox {
+  align-items: center;
+  display: flex;
+  font-size: 20px;
+  justify-content: center;
+  margin-top: 20px;
+}
+
+.game-message {
+  color: rgb(204, 57, 57);
+}
+
+@media (min-width: 540px) {
+  .headingbox-heading {
+    font-size: 30px;
+  }
+
+  .gamebox-wintext {
+    font-size: 36px;
+  }
+}
