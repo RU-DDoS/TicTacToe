@@ -18,9 +18,8 @@ $(function() {
             $(".gamebox-winbox").addClass("is-active");
             $(".gamebox-wintext").text("Draw!");
             $(".game-message").text("");
-          } else {
-            $(".game-message").text(data.charAt(1) + " clicked " + index);
           }
+          $(".game-message").text(data.charAt(1) + " clicked " + index);
         }
       }
     });

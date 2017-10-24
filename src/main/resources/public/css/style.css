@@ -81,6 +81,11 @@ body {
   cursor: pointer;
 }
 
+.winbox-button.newgame-button {
+  border: 1px solid #ccc;
+  margin: 20px 0;
+}
+
 .game-button {
   align-items: center;
   background: #fff;

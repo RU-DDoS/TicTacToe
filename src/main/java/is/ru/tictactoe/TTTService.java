@@ -86,8 +86,8 @@ public class TTTService {
 		if(board[0] == board[4] && board[0] == board[8]) {
 			winner = board[0];
 		}
-		if(board[2] == board[4] && board[0] == board[6]) {
-			winner = board[0];
+		if(board[2] == board[4] && board[2] == board[6]) {
+			winner = board[2];
 		}
 	}
 }
