@@ -23,6 +23,7 @@ public class TicTacToe {
                 Integer index = map.get("index").integerValue();
                 // Gets the the currents move's player
                 char player = game.getPlayer();
+                // Main game logic, all statements return string of win/draw/new game and the current player
                 if(game.makeMove(index)) {
                     if(game.hasWinner()) {
                         return "w" + player;
