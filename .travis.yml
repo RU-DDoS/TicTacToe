@@ -11,23 +11,28 @@ install:
 addons:
   chrome: stable
 before_cache:
-- rm -f  $HOME/.gradle/caches/modules-2/modules-2.lock
-- rm -fr $HOME/.gradle/caches/*/plugin-resolution/
+  - rm -f  $HOME/.gradle/caches/modules-2/modules-2.lock
+  - rm -fr $HOME/.gradle/caches/*/plugin-resolution/
 cache:
   directories:
-  - "$HOME/.gradle/caches/"
-  - "$HOME/.gradle/wrapper/"
+    - "$HOME/.gradle/caches/"
+    - "$HOME/.gradle/wrapper/"
 notifications:
   slack:
     rooms:
-    - secure: TTShep1pIJznMqch4UCRZOrdC2LD/dY5BE2FTfV4INwZtV6yC5qbLchH094ZbsOI8/Tw+REnbvfVhy3GLmes9bGonRg6rm5x5nbHCc75Jq1iM6wuNV3632kixpBnBgJDiBi15rK+w+vcvpK6w/wOG3hOJP5JAqHXh7/GkPu7/gK3MoBDERFt1C5Qz+0jdnDgmvrCv+VHt4NKrVKMcaZw7XH1Lc9bHIYKfOZxjrdr6n1UX509wDchxofNmMyJrE+q8Am3oGFkoNfdycVsoHFRGLHayBIP0SVFZZBACZVPnbjlPO0yC+z2UMA88xPQHqgjetWlSggf+VR5j1jnUmQlTssDh8Gatp+Ub9eTgS/WlVPi0WQ8NXeI7wOjKCSJ2MXu6u/tg3g1zzg3uD8uHETQbHtMaaKU0PONERE5dgNxD8NdHQRPU+5ykxUU10aGdwnNqFpabakIJrMZ77+grD714f8lY09IuPqv96yO1xyM0L/s7yBdy/NZD9o7dtB5bnqix5Yo2gw6jj0pTccxV2fNeckrKzaIY4SF68DxgtgFGRJLBpclAtGvizmvcFipZJ27Q13TAu8n3KQsEWSLn8j8RhxbJ9Mf5sIRv3yHA8E/yVMTTE67jAKbXuDVVx1WMzQGzDtfQk4mUYtiLgC5vKa5P04sgPFMSyk+7btSl1ODpes=
+      - secure: TTShep1pIJznMqch4UCRZOrdC2LD/dY5BE2FTfV4INwZtV6yC5qbLchH094ZbsOI8/Tw+REnbvfVhy3GLmes9bGonRg6rm5x5nbHCc75Jq1iM6wuNV3632kixpBnBgJDiBi15rK+w+vcvpK6w/wOG3hOJP5JAqHXh7/GkPu7/gK3MoBDERFt1C5Qz+0jdnDgmvrCv+VHt4NKrVKMcaZw7XH1Lc9bHIYKfOZxjrdr6n1UX509wDchxofNmMyJrE+q8Am3oGFkoNfdycVsoHFRGLHayBIP0SVFZZBACZVPnbjlPO0yC+z2UMA88xPQHqgjetWlSggf+VR5j1jnUmQlTssDh8Gatp+Ub9eTgS/WlVPi0WQ8NXeI7wOjKCSJ2MXu6u/tg3g1zzg3uD8uHETQbHtMaaKU0PONERE5dgNxD8NdHQRPU+5ykxUU10aGdwnNqFpabakIJrMZ77+grD714f8lY09IuPqv96yO1xyM0L/s7yBdy/NZD9o7dtB5bnqix5Yo2gw6jj0pTccxV2fNeckrKzaIY4SF68DxgtgFGRJLBpclAtGvizmvcFipZJ27Q13TAu8n3KQsEWSLn8j8RhxbJ9Mf5sIRv3yHA8E/yVMTTE67jAKbXuDVVx1WMzQGzDtfQk4mUYtiLgC5vKa5P04sgPFMSyk+7btSl1ODpes=
   email:
     recipients:
-    - andris16@ru.is
+      - andris16@ru.is
     on_success: never
     on_failure: always
 after_success:
-- bash <(curl -s https://codecov.io/bash)
+  - bash <(curl -s https://codecov.io/bash)
 after_deploy:
   - ./gradlew check
   - ./gradlew selenium
+deploy:
+  provider: heroku
+  api_key:
+    secure: Ol9L411ym/amwPj6y+STXz7Ntg8Fvoq6TlDSBzr53J0cjYemg8YF958kDHEFYcu91O/oAlmaNZe9W1iZo2ZqACaY1VFI9jtTx5bUcNvHnO7a0/s8r1cKQXuwesNKkZmSjRr8nAOE/IcnSD9aS+L8oyVFjL1ZRRWHyCfUGvUFGlT6qOoO1esBuIIExJs3U7RRku5CN8YjVPjLF6JdSKXIYcUgfdp3w+JDywntHFlxMaxP1DOdxvkCs/feOIHgHCl/M1DG/uU4bFlZRmaF48buzq4+7TcHLqx4yged5iT+losK2Pijrj8E8RtIrkIdmwwgR5yl6ZRz80WWcX9HcS/o4ZoVmpDwqQdGR6K1OWWUzJB2/O99r0IcTFwP3f1uu5InBGpCfkz44pM0o6iNtL9ptLvMDu4BUC6hlwIjJdsDNxtoJuN4gWKknO5rfm5PNUdWFqIWBPiYhT/gP2u91Fovwr/+j/9VeRX80dgNZS7qvoJU9BT32aLF8z5FZdpU8/R5wkROG8qqOCEQYX+q/aSFq2ep0SobS6iNPNXja42Bn5Ge3cU8IoRT+6yDIGvYDJQTY0QQnfdHTJ2ZTvcFtPm1EPItkGftiJK3odgZ7sJSJRdzggfuDQI6tQTSV0wHpfDRERpWf1QPZfTEXQUfVUBTZejDI2hegADaKcjZzN1je4I=
+  app: tictactoe-staging-ddos
