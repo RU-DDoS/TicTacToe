@@ -105,6 +105,12 @@ public class TicTacToeTest {
 	}
 
 	@Test
+	public void testNoDraw() {
+		TTTService game = new TTTService();
+		assertEquals(false, game.checkDraw());
+	}
+
+	@Test
 	public void testGetWinner() {
 		TTTService game = new TTTService();
 		game.makeMove(1);
