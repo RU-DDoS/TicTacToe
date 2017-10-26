@@ -28,10 +28,6 @@ notifications:
     on_failure: always
 after_success:
 - bash <(curl -s https://codecov.io/bash)
-deploy:
-  provider: heroku
-  api_key: 5f9a4678-fe47-4798-9537-33c6c02117e4
-  app: tictactoe-ddos-staging
 after_deploy:
   - ./gradlew check
   - ./gradlew selenium
