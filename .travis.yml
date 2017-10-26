@@ -33,6 +33,8 @@ after_deploy:
   - ./gradlew selenium
 deploy:
   provider: heroku
+  app: tictactoe-staging-ddos
   api_key:
     secure: Ol9L411ym/amwPj6y+STXz7Ntg8Fvoq6TlDSBzr53J0cjYemg8YF958kDHEFYcu91O/oAlmaNZe9W1iZo2ZqACaY1VFI9jtTx5bUcNvHnO7a0/s8r1cKQXuwesNKkZmSjRr8nAOE/IcnSD9aS+L8oyVFjL1ZRRWHyCfUGvUFGlT6qOoO1esBuIIExJs3U7RRku5CN8YjVPjLF6JdSKXIYcUgfdp3w+JDywntHFlxMaxP1DOdxvkCs/feOIHgHCl/M1DG/uU4bFlZRmaF48buzq4+7TcHLqx4yged5iT+losK2Pijrj8E8RtIrkIdmwwgR5yl6ZRz80WWcX9HcS/o4ZoVmpDwqQdGR6K1OWWUzJB2/O99r0IcTFwP3f1uu5InBGpCfkz44pM0o6iNtL9ptLvMDu4BUC6hlwIjJdsDNxtoJuN4gWKknO5rfm5PNUdWFqIWBPiYhT/gP2u91Fovwr/+j/9VeRX80dgNZS7qvoJU9BT32aLF8z5FZdpU8/R5wkROG8qqOCEQYX+q/aSFq2ep0SobS6iNPNXja42Bn5Ge3cU8IoRT+6yDIGvYDJQTY0QQnfdHTJ2ZTvcFtPm1EPItkGftiJK3odgZ7sJSJRdzggfuDQI6tQTSV0wHpfDRERpWf1QPZfTEXQUfVUBTZejDI2hegADaKcjZzN1je4I=
-  app: tictactoe-staging-ddos
+  on:
+    all_branches: true
