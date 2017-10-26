@@ -5,10 +5,20 @@ import static org.junit.Assert.*;
 
 public class TicTacToeTest {
 	@Test
-	public void testIllegalInput() {
+	public void testIllegalInputLower() {
 		TTTService game = new TTTService();
 		try {
 			game.makeMove(0);
+		} catch (IllegalArgumentException e) {
+			assertEquals("Element out of range, please stick to 1-9", e.getMessage());
+		}
+	}
+
+	@Test
+	public void testIllegalInputUpper() {
+		TTTService game = new TTTService();
+		try {
+			game.makeMove(10);
 		} catch (IllegalArgumentException e) {
 			assertEquals("Element out of range, please stick to 1-9", e.getMessage());
 		}
@@ -156,4 +166,6 @@ public class TicTacToeTest {
 		TTTService game = new TTTService();
 		assertEquals(false, game.hasWinner());
 	}
+
+
 }
