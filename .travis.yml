@@ -30,8 +30,7 @@ after_success:
 - bash <(curl -s https://codecov.io/bash)
 deploy:
   provider: heroku
-  api_key:
-    secure: UJbNjngCRiF5J6LMJjTTd2uHhKIsnWmqpnB6HdW7LMtiLxu95dRPgz+3zL7MrzvuLx2ocBtAQy9PVDE7LCb3DXqbbi0JA6NLeGaH4q2g87bk1DZ1uQPUKgw8wKwXfVGDuOdT3vXtgtdEKk92RXcT97gzU371ZPJEKWybNHcfvNRILFkRI12mO4r/QJ1Y6dhsoy0egVxrfyrdOWHqc91nbddXaGawYZmyv+H4eBHF9CWEAjkJPI3k9TfjuFtghTfDSPM1Cz7R7f8+2iE3nfBSqSy9oM04JQt5b5stbHLDaue2E26h09k1vDK0LLidAqU6QhD78VzOP4pSVhADGpfaw6BM2WI7tlcHmYJQtfKAR/bnkgkdGXMikFCOiU85rKe1HQRR4fA1wTvH+8n+OfsAb2sey3ofn72Ih4Gd2/vRzix/snGNvqKb3uJ4cSi+WAAwcA5Xe1QZrvSsqrJX+/bPzCLSMkLDf0/lDPRlK5sdJIZC7dxKb300YWIkfQA4BcpsySdTF229jS/YmTo0FRRiKmt1iHRy2W6li3gHU7I733rT388IRcbBIJEL3PsDASTuMShNWNJ4/OtSMXD724tL9375OFl7LKajZ9WnwUKOFAlXU5SUpqDbFDPMajkRhSNQNPqYxvyTXknfzDumC4/piM/OnnEQzcVzSvNyf5E/rVE=
+  api_key: 5f9a4678-fe47-4798-9537-33c6c02117e4
   app: tictactoe-ddos-staging
 after_deploy:
   - ./gradlew check
