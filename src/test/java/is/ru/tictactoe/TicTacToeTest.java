@@ -112,7 +112,6 @@ public class TicTacToeTest {
 		game.makeMove(2);
 		game.makeMove(5);
 		game.makeMove(3);
-		game.hasWinner();
 		assertEquals('x', game.getWinner());
 	}
 
@@ -133,5 +132,22 @@ public class TicTacToeTest {
 			board[i] = (char)(i + '1');
 		}
 		assertArrayEquals(board, game.getBoard());
+	}
+
+	@Test
+	public void testHasWinner() {
+		TTTService game = new TTTService();
+		game.makeMove(1);
+		game.makeMove(4);
+		game.makeMove(2);
+		game.makeMove(5);
+		game.makeMove(3);
+		assertEquals(true, game.hasWinner());
+	}
+
+	@Test
+	public void testHasNoWinner() {
+		TTTService game = new TTTService();
+		assertEquals(false, game.hasWinner());
 	}
 }
