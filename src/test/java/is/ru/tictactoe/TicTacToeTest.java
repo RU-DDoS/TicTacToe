@@ -46,11 +46,17 @@ public class TicTacToeTest {
 	}
 
 	@Test
-	public void testAlreadyUsedLocation() {
+	public void testAlreadyUsedLocationX() {
 		TTTService game = new TTTService();
 		game.makeMove(1);
-		assertEquals(false, game.makeMove(1));
-		
+		assertEquals(false, game.makeMove(1));	
+	}
+	@Test
+	public void testAlreadyUsedLocationO() {
+		TTTService game = new TTTService();
+		game.makeMove(1);
+		game.makeMove(2);
+		assertEquals(false, game.makeMove(2));	
 	}
 
 	@Test
