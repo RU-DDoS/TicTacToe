@@ -4,4 +4,5 @@ Since the TicTacToe game does not require any database, it does not include any 
 ## Front-end
 The website will be written in HTML, CSS and Javascript. It should be as simple as possible for it's only purpose, the game itself. The game board will have 3x3 buttons (boxes). If one is clicked it will either be marked with *X* or *O*.
 **Mockup:**
+This is a basic mockup of the webpage
 ![alt text](https://github.com/RU-DDoS/TicTacToe/blob/docs/docs/Images/mockup.png)
