@@ -17,7 +17,7 @@ public abstract class SeleniumTestWrapper {
   @BeforeClass
   public static void openBrowser() {
     ChromeOptions chromeOptions = new ChromeOptions();
-    //chromeOptions.setBinary("/tmp/google-chrome-stable_current_amd64.deb");
+    chromeOptions.setBinary("/tmp/google-chrome-stable_current_amd64.deb");
     chromeOptions.addArguments("--headless");
     chromeOptions.addArguments("--disable-gpu");
     driver = new ChromeDriver(chromeOptions);
