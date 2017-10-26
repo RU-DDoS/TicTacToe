@@ -4,13 +4,22 @@ apply plugin: 'jacoco'
 
 mainClassName = "is.ru.tictactoe.TicTacToe"
 
+sourceSets {
+	selenium
+}
+
 repositories {
 	jcenter()
 }
 
 dependencies {
 	compile 'com.sparkjava:spark-core:2.6.0'
+	compile 'com.google.guava:guava:22.0'
+
 	testImplementation 'junit:junit:4.12'
+
+	seleniumCompile 'junit:junit:4.12'
+    seleniumCompile 'org.seleniumhq.selenium:selenium-java:3.6.0'
 }
 
 task stage (dependsOn: installDist) {
@@ -23,3 +32,10 @@ jacocoTestReport {
     }
 }
 check.dependsOn jacocoTestReport
+
+test.useTestNG()
+
+task selenium(type: Test, dependsOn: installDist) {
+	testClassesDir = sourceSets.selenium.output.classesDir
+	classpath = sourceSets.selenium.runtimeClasspath
+}
