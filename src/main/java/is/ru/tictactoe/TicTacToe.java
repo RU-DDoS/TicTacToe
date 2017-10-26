@@ -11,17 +11,19 @@ public class TicTacToe {
     public static void main(String[] args) {
     	TTTService game = new TTTService();
    		port(getHerokuPort());
-
+            // Opens the folder named public and searches for a folder called index.html
 			staticFiles.location("/public");
-
 			get("/", (req, res) -> {
 					return "Hello World!";
 			});
 			get("/api/click", (req, res) -> {
             QueryParamsMap map = req.queryMap();
             try {
+                // Returns the index of the TTT-button
                 Integer index = map.get("index").integerValue();
+                // Gets the the currents move's player
                 char player = game.getPlayer();
+                // Main game logic, all statements return string of win/draw/new game and the current player
                 if(game.makeMove(index)) {
                     if(game.hasWinner()) {
                         return "w" + player;
@@ -36,6 +38,7 @@ public class TicTacToe {
                 return "Error: " + e.getMessage();
             }
         });
+        // Creates a new game
         get("/api/newgame", (req, res) -> {
             try {
                 game.newGame();
@@ -46,7 +49,7 @@ public class TicTacToe {
             }
         });
     }
-
+        // Returns the Heroku-port, returns 4567 if there is a problem with the connection
 		static int getHerokuPort() {
 			ProcessBuilder psb = new ProcessBuilder();
 			if (psb.environment().get("PORT") != null) {
