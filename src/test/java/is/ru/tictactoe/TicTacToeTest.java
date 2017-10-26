@@ -116,4 +116,15 @@ public class TicTacToeTest {
 		game.newGame();
 		assertEquals('1', game.getValue(1));
 	}
+
+	@Test
+	public void testGetBoard() {
+		TTTService game = new TTTService();
+
+		char[] board = new char[9];
+		for(int i = 0; i < 9; i++) {
+			board[i] = (char)(i + '1');
+		}
+		assertArrayEquals(board, game.getBoard());
+	}
 }
