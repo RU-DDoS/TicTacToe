@@ -44,9 +44,16 @@ public class TicTacToeTest {
 	}
 
 	@Test
-	public void testGetPlayer() {
+	public void testGetPlayerX() {
 		TTTService game = new TTTService();
 		assertEquals('x', game.getPlayer());
+	}
+
+	@Test
+	public void testGetPlayerO() {
+		TTTService game = new TTTService();
+		game.makeMove(1);
+		assertEquals('o', game.getPlayer());
 	}
 
 	@Test
