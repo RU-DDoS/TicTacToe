@@ -32,6 +32,7 @@ after_deploy:
   - ./gradlew check
   - ./gradlew selenium
 deploy:
+  skip_cleanup: true
   provider: heroku
   app: tictactoe-staging-ddos
   api_key:
