@@ -1,4 +1,15 @@
 language: java
+dist: trusty
+install:
+- wget -N http://chromedriver.storage.googleapis.com/2.30/chromedriver_linux64.zip
+  -P ~/
+- unzip ~/chromedriver_linux64.zip -d ~/
+- rm ~/chromedriver_linux64.zip
+- sudo mv -f ~/chromedriver /usr/local/share/
+- sudo chmod +x /usr/local/share/chromedriver
+- sudo ln -s /usr/local/share/chromedriver /usr/local/bin/chromedriver
+addons:
+  chrome: stable
 before_cache:
 - rm -f  $HOME/.gradle/caches/modules-2/modules-2.lock
 - rm -fr $HOME/.gradle/caches/*/plugin-resolution/
@@ -9,11 +20,41 @@ cache:
 notifications:
   slack:
     rooms:
-      - secure: "TTShep1pIJznMqch4UCRZOrdC2LD/dY5BE2FTfV4INwZtV6yC5qbLchH094ZbsOI8/Tw+REnbvfVhy3GLmes9bGonRg6rm5x5nbHCc75Jq1iM6wuNV3632kixpBnBgJDiBi15rK+w+vcvpK6w/wOG3hOJP5JAqHXh7/GkPu7/gK3MoBDERFt1C5Qz+0jdnDgmvrCv+VHt4NKrVKMcaZw7XH1Lc9bHIYKfOZxjrdr6n1UX509wDchxofNmMyJrE+q8Am3oGFkoNfdycVsoHFRGLHayBIP0SVFZZBACZVPnbjlPO0yC+z2UMA88xPQHqgjetWlSggf+VR5j1jnUmQlTssDh8Gatp+Ub9eTgS/WlVPi0WQ8NXeI7wOjKCSJ2MXu6u/tg3g1zzg3uD8uHETQbHtMaaKU0PONERE5dgNxD8NdHQRPU+5ykxUU10aGdwnNqFpabakIJrMZ77+grD714f8lY09IuPqv96yO1xyM0L/s7yBdy/NZD9o7dtB5bnqix5Yo2gw6jj0pTccxV2fNeckrKzaIY4SF68DxgtgFGRJLBpclAtGvizmvcFipZJ27Q13TAu8n3KQsEWSLn8j8RhxbJ9Mf5sIRv3yHA8E/yVMTTE67jAKbXuDVVx1WMzQGzDtfQk4mUYtiLgC5vKa5P04sgPFMSyk+7btSl1ODpes="
-  email: #Send email to andri if build fail
+    - secure: TTShep1pIJznMqch4UCRZOrdC2LD/dY5BE2FTfV4INwZtV6yC5qbLchH094ZbsOI8/Tw+REnbvfVhy3GLmes9bGonRg6rm5x5nbHCc75Jq1iM6wuNV3632kixpBnBgJDiBi15rK+w+vcvpK6w/wOG3hOJP5JAqHXh7/GkPu7/gK3MoBDERFt1C5Qz+0jdnDgmvrCv+VHt4NKrVKMcaZw7XH1Lc9bHIYKfOZxjrdr6n1UX509wDchxofNmMyJrE+q8Am3oGFkoNfdycVsoHFRGLHayBIP0SVFZZBACZVPnbjlPO0yC+z2UMA88xPQHqgjetWlSggf+VR5j1jnUmQlTssDh8Gatp+Ub9eTgS/WlVPi0WQ8NXeI7wOjKCSJ2MXu6u/tg3g1zzg3uD8uHETQbHtMaaKU0PONERE5dgNxD8NdHQRPU+5ykxUU10aGdwnNqFpabakIJrMZ77+grD714f8lY09IuPqv96yO1xyM0L/s7yBdy/NZD9o7dtB5bnqix5Yo2gw6jj0pTccxV2fNeckrKzaIY4SF68DxgtgFGRJLBpclAtGvizmvcFipZJ27Q13TAu8n3KQsEWSLn8j8RhxbJ9Mf5sIRv3yHA8E/yVMTTE67jAKbXuDVVx1WMzQGzDtfQk4mUYtiLgC5vKa5P04sgPFMSyk+7btSl1ODpes=
+  email:
     recipients:
-      - andris16@ru.is
-    on_success: never # default: change
-    on_failure: always # default: always
+    - andris16@ru.is
+    on_success: never
+    on_failure: always
 after_success:
-  - bash <(curl -s https://codecov.io/bash)
+- bash <(curl -s https://codecov.io/bash)
+script:
+- "./gradlew check"
+- "./gradlew selenium"
+before_script:
+- export DISPLAY=:99.0
+- sh -e /etc/init.d/xvfb start
+- sleep 3
+- 'if [ "$TRAVIS_PULL_REQUEST" != "false" ]; then echo "This is a
+      pull request. No deployment will be done."; exit 0; fi'
+- wget -qO- https://toolbelt.heroku.com/install-ubuntu.sh | sh
+- git remote add heroku git@heroku.com:tictactoe-staging-ddos.git
+- echo "Host heroku.com" >> ~/.ssh/config
+- echo "   StrictHostKeyChecking no" >> ~/.ssh/config
+- echo "   CheckHostIP no" >> ~/.ssh/config
+- echo "   UserKnownHostsFile=/dev/null" >> ~/.ssh/config
+- heroku keys:clear
+- yes | heroku keys:add
+- heroku auth:whoami
+- yes | git push heroku $TRAVIS_BRANCH:master
+before_install:
+- "/sbin/start-stop-daemon --start --quiet --pidfile /tmp/custom_xvfb_99.pid --make-pidfile
+  --background --exec /usr/bin/Xvfb -- :99 -ac -screen 0 1280x1024x16"
+env:
+  global:
+  - secure: DcDA+UZ8hNk8XliNZ4zD46/Xj6NhQcaqQan9Fyt+SLDrNe90bdYwdrPL/NpaDoNeEsGZnJ/b8RwPxKWhYb6yKyzc3Ck/G5CmSuIDk3kzzpuOyvA14iHvNPzM6amHhZchqWx2yfGMlOdMsOrnm5SMU3UxyYW7kirK9qVgRsxUw8yRlIxc5NYrXZTWyvOzLnObeOmavf1lEmOR9X3cWZRCp1dGcqyua+i1FK8lOepHE8CExho6nJUMbXJFopQSLZ4zoVONNPVfbqx1w5f3YhsGRa3bFUNoD/MbT5KlbVmU0kpvFUSeFEfUzsSBB12pjKhQ4OZg+fvzErgm4kAYbzaL2g/F+FPkitCckUsciID3/HFwvzq2jKPqYZlWLDmyQb9itQ99cEbrOUOK3x8zOkbhsezL/KwiLRKF01zoAeVzff4grbgqbgLsUwCjLAWpc8UeqggcG5ezCafA8hqYyY2BHzEdU+g9p4Bf6wEWXi1ys8QegPuBwPJoD5BFmlBkDDeJyVk/DskbZ5E7hIg2ekJhAzLLleAdL7U5HUFF8wI08V5R0vW9qWBbFo+kXORMVAgeSklAeD2IpwOmN5qnLjMLEZ2BTdjqg256bbbBsZ9yqJXsy6IgPZEP25UwHwFOL5QBXFNM4g99q39BKeBqTOVL3l1jJekVVtMMf2vQ/++JnV4=
+deploy:
+  provider: heroku
+  api_key:
+    secure: pJb1Ju3ND5rRaV15LE3V1idiSvn2Tv3ZQNp05+kqOEUud9zl/Kr+o4HPWNQvImjImt0tZHPvDTseMy8zJ0iE+4iv0iJ4LEKPrJS80o3xoD/rHjScs2Y6Nx6CwIemOk3hkUr0/LekkTTFoPHss29xUaSf1gdy2k994bvvKlTUG3bWJIvvN9r8kKZC8skype2rY5HLRCVQbgHphzxV/COsx/Q/Yj4ePWNV43pODN71Hm8usHkkC6B8M5zhM+1WMHhj6P1QpiuPrXcezkPI1iL5Lsm6LjR4LJlHS2qfit32x7yClOVyvYuLMm0NUqJMse0lvkHnjR2hS2/ZUN+tTPWIIR0qNLSTvgZtE7EEHh0cyacyjB0tZA+HZYyxxLLwAxuMRALAf+fDjihbTtPswphVQXsZgrEFq53Jn2uJ4nIXjAPVGzj3Lc5lIwL4bdFzWh7j+qSaGQ57yMAqGQhuiYZBdKm2QI3EieHEo9g/z5rByuWCnxXavkbEz2TjDSImG5jIDLgBp9IylNbCWCuWRMg8mw0i7LoKwtJt2iaCrchdYlpbW+3x10qSaLRGaHJaRLWbotlsj42pi5zcLWtyZeKE13Ve/poLSBD/pKf9Gc5wx3aC80gTjHguwA6i2LCB6KCXFysJYObl30mLBr4gT5tSrAfR/3bxAbBNwaQsTpDmRmo=
+  app: tictactoe-production-ddos
