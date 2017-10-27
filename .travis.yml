@@ -1,48 +1,54 @@
 language: java
 dist: trusty
 install:
-  - wget -N http://chromedriver.storage.googleapis.com/2.30/chromedriver_linux64.zip -P ~/
-  - unzip ~/chromedriver_linux64.zip -d ~/
-  - rm ~/chromedriver_linux64.zip
-  - sudo mv -f ~/chromedriver /usr/local/share/
-  - sudo chmod +x /usr/local/share/chromedriver
-  - sudo ln -s /usr/local/share/chromedriver /usr/local/bin/chromedriver
+- wget -N http://chromedriver.storage.googleapis.com/2.30/chromedriver_linux64.zip
+  -P ~/
+- unzip ~/chromedriver_linux64.zip -d ~/
+- rm ~/chromedriver_linux64.zip
+- sudo mv -f ~/chromedriver /usr/local/share/
+- sudo chmod +x /usr/local/share/chromedriver
+- sudo ln -s /usr/local/share/chromedriver /usr/local/bin/chromedriver
 addons:
   chrome: stable
 before_cache:
-  - rm -f  $HOME/.gradle/caches/modules-2/modules-2.lock
-  - rm -fr $HOME/.gradle/caches/*/plugin-resolution/
+- rm -f  $HOME/.gradle/caches/modules-2/modules-2.lock
+- rm -fr $HOME/.gradle/caches/*/plugin-resolution/
 cache:
   directories:
-    - "$HOME/.gradle/caches/"
-    - "$HOME/.gradle/wrapper/"
+  - "$HOME/.gradle/caches/"
+  - "$HOME/.gradle/wrapper/"
 notifications:
   slack:
     rooms:
-      - secure: TTShep1pIJznMqch4UCRZOrdC2LD/dY5BE2FTfV4INwZtV6yC5qbLchH094ZbsOI8/Tw+REnbvfVhy3GLmes9bGonRg6rm5x5nbHCc75Jq1iM6wuNV3632kixpBnBgJDiBi15rK+w+vcvpK6w/wOG3hOJP5JAqHXh7/GkPu7/gK3MoBDERFt1C5Qz+0jdnDgmvrCv+VHt4NKrVKMcaZw7XH1Lc9bHIYKfOZxjrdr6n1UX509wDchxofNmMyJrE+q8Am3oGFkoNfdycVsoHFRGLHayBIP0SVFZZBACZVPnbjlPO0yC+z2UMA88xPQHqgjetWlSggf+VR5j1jnUmQlTssDh8Gatp+Ub9eTgS/WlVPi0WQ8NXeI7wOjKCSJ2MXu6u/tg3g1zzg3uD8uHETQbHtMaaKU0PONERE5dgNxD8NdHQRPU+5ykxUU10aGdwnNqFpabakIJrMZ77+grD714f8lY09IuPqv96yO1xyM0L/s7yBdy/NZD9o7dtB5bnqix5Yo2gw6jj0pTccxV2fNeckrKzaIY4SF68DxgtgFGRJLBpclAtGvizmvcFipZJ27Q13TAu8n3KQsEWSLn8j8RhxbJ9Mf5sIRv3yHA8E/yVMTTE67jAKbXuDVVx1WMzQGzDtfQk4mUYtiLgC5vKa5P04sgPFMSyk+7btSl1ODpes=
+    - secure: TTShep1pIJznMqch4UCRZOrdC2LD/dY5BE2FTfV4INwZtV6yC5qbLchH094ZbsOI8/Tw+REnbvfVhy3GLmes9bGonRg6rm5x5nbHCc75Jq1iM6wuNV3632kixpBnBgJDiBi15rK+w+vcvpK6w/wOG3hOJP5JAqHXh7/GkPu7/gK3MoBDERFt1C5Qz+0jdnDgmvrCv+VHt4NKrVKMcaZw7XH1Lc9bHIYKfOZxjrdr6n1UX509wDchxofNmMyJrE+q8Am3oGFkoNfdycVsoHFRGLHayBIP0SVFZZBACZVPnbjlPO0yC+z2UMA88xPQHqgjetWlSggf+VR5j1jnUmQlTssDh8Gatp+Ub9eTgS/WlVPi0WQ8NXeI7wOjKCSJ2MXu6u/tg3g1zzg3uD8uHETQbHtMaaKU0PONERE5dgNxD8NdHQRPU+5ykxUU10aGdwnNqFpabakIJrMZ77+grD714f8lY09IuPqv96yO1xyM0L/s7yBdy/NZD9o7dtB5bnqix5Yo2gw6jj0pTccxV2fNeckrKzaIY4SF68DxgtgFGRJLBpclAtGvizmvcFipZJ27Q13TAu8n3KQsEWSLn8j8RhxbJ9Mf5sIRv3yHA8E/yVMTTE67jAKbXuDVVx1WMzQGzDtfQk4mUYtiLgC5vKa5P04sgPFMSyk+7btSl1ODpes=
   email:
     recipients:
-      - andris16@ru.is
+    - andris16@ru.is
     on_success: never
     on_failure: always
 after_success:
-  - bash <(curl -s https://codecov.io/bash)
-deploy:
-  skip_cleanup: true
-  provider: heroku
-  app: tictactoe-staging-ddos
-  api_key:
-    secure: Ol9L411ym/amwPj6y+STXz7Ntg8Fvoq6TlDSBzr53J0cjYemg8YF958kDHEFYcu91O/oAlmaNZe9W1iZo2ZqACaY1VFI9jtTx5bUcNvHnO7a0/s8r1cKQXuwesNKkZmSjRr8nAOE/IcnSD9aS+L8oyVFjL1ZRRWHyCfUGvUFGlT6qOoO1esBuIIExJs3U7RRku5CN8YjVPjLF6JdSKXIYcUgfdp3w+JDywntHFlxMaxP1DOdxvkCs/feOIHgHCl/M1DG/uU4bFlZRmaF48buzq4+7TcHLqx4yged5iT+losK2Pijrj8E8RtIrkIdmwwgR5yl6ZRz80WWcX9HcS/o4ZoVmpDwqQdGR6K1OWWUzJB2/O99r0IcTFwP3f1uu5InBGpCfkz44pM0o6iNtL9ptLvMDu4BUC6hlwIjJdsDNxtoJuN4gWKknO5rfm5PNUdWFqIWBPiYhT/gP2u91Fovwr/+j/9VeRX80dgNZS7qvoJU9BT32aLF8z5FZdpU8/R5wkROG8qqOCEQYX+q/aSFq2ep0SobS6iNPNXja42Bn5Ge3cU8IoRT+6yDIGvYDJQTY0QQnfdHTJ2ZTvcFtPm1EPItkGftiJK3odgZ7sJSJRdzggfuDQI6tQTSV0wHpfDRERpWf1QPZfTEXQUfVUBTZejDI2hegADaKcjZzN1je4I=
-  on:
-    all_branches: true
-
+- bash <(curl -s https://codecov.io/bash)
 script:
-  - ./gradlew check
-  - ./gradlew selenium
+  - "./gradlew check"
+  - "./gradlew selenium"
 before_script:
-  - "export DISPLAY=:99.0"
-  - "sh -e /etc/init.d/xvfb start"
+  - export DISPLAY=:99.0
+  - sh -e /etc/init.d/xvfb start
   - sleep 3
-
+  - wget -qO- https://toolbelt.heroku.com/install-ubuntu.sh | sh
+  - git remote add heroku git@heroku.com:tictactoe-staging-ddos.git
+  - echo "Host heroku.com" >> ~/.ssh/config
+  - echo "   StrictHostKeyChecking no" >> ~/.ssh/config
+  - echo "   CheckHostIP no" >> ~/.ssh/config
+  - echo "   UserKnownHostsFile=/dev/null" >> ~/.ssh/config
+  - heroku keys:clear
+  - yes | heroku keys:add
+  - yes | git push heroku master
 before_install:
-  - "/sbin/start-stop-daemon --start --quiet --pidfile /tmp/custom_xvfb_99.pid --make-pidfile --background --exec /usr/bin/Xvfb -- :99 -ac -screen 0 1280x1024x16"
+- "/sbin/start-stop-daemon --start --quiet --pidfile /tmp/custom_xvfb_99.pid --make-pidfile
+  --background --exec /usr/bin/Xvfb -- :99 -ac -screen 0 1280x1024x16"
+env:
+  global:
+    - secure: UDUBiPYNYs3/yWsvWcGRMW89hta5XS13oQ6se5v9JI00bareAietkU2rDEA7FBUBnXLZ1/dznOccNJnvcCoVmBbIAaeDDaU/Y8qhtDZIYQLcfxoiZrz0llgIPCjzxWH3BXC6KjtaairhNrsEwyY7h9hNuUjJpT4Q+FQ0E02DCvCzQZuTEncTr6wLUug1u6GTRjzjUDG0swcchaJAgrOAC99CSag89mEotGJlxfMyTchRMVKV8tq7EKghZp2AEMBllx2T56aMvwnSG7ema+is3R9O4gaakAmLpPk8pnK7RQf5QHMROynP7Drvy0WYijeT5AEAfSXhqlNzFBiDpyvevnu6f0xWd2H8EqRvL/GGBxPj9BApgqZ8USLj8mhx2UA9ikV2P3HN8Ah3lmgKryUO+8Ye589JPMzRB3pP69+aep/EJXIrgHbHRlPA8uds0DcPmGtEZf8I+o1+d4acBnYNPnhU1bditsvKohd66NTiI31ehBLRszHS3xDr9ezAQeLPVcS9hoUmZh2fg53nUI7M0RkrOPdVNgtu/XBvZAc6c4r/KxfKrF0B7UZaXWsZM1qLJVyAxssnudvRQ//3Q4w5lulL1r9Vy6aZ6zzcSvTzA24N8kjfNnsMG4NFzK2fGsQeADKYcHUCu67oqv1qbx9zCPVqLWjq3Lp5DmoP5BOu88Y=
+    - secure: EMXhUpaXaGMGQa+BFQgv+8cxS+VfVfFBbjDXbq/v3oRxJVdbKqH8Yzgg1tHKAjHaq3PG2p8RAJu1S5Jo6l7x8b5le7j31BCOlEUpfY2ZEhAztLyX7gG6rs8m24AqDzY2XDQjOY1JAtNah4mtlJEsqkbtQ5ChQSXWujZm7i/dRCjACfVbrN1rCH8kCd5jqmoMVmH4ZAmTjyhBckBalHI34a0E35ZdP0RBGCO0Wy38icRyzRnXkfp9f8I5Co1gAsjdZo6ZFfRdRHu52JPN0L6Qb6gcC0lBSJzgi4Yb6dDIoniVu4QqkdUu2s3xqnx4RTZNo3E4anyfZB4cntVaopBBPWMDdYs2RjlQIUINzBLzut3l1qjlZiZ+5hLEWaYO2ZlH7uJBW7Q/or7jMToOqyu2GDJkvNOoOm9eG+o4h55LbdYuFjS03bgKxqAi2z/oAtocimMhrsG/ncTqobKV8O/L7IZZ1Dv2sKrjxjgSa25yB+oEen9iFWCGtN6geenXEEiSfohL5bZ/8IYypybLxqxqj1EePLJ9SFqobe+1b5Mh1TLvvNvbkMxOaxxA1mZaHrhDY/gkN0zq5r7PZxBZGCAyr+mVn7SmuDW2ilR3rTvCAZP/R6i4ABq6hJExcIORsoH+NUW0wemvlfsr3/eHd5MgUZWFbJqIji9QPaPxPMjuEqI=
+
