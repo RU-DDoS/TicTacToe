@@ -43,6 +43,8 @@ before_script:
   - echo "   UserKnownHostsFile=/dev/null" >> ~/.ssh/config
   - heroku keys:clear
   - yes | heroku keys:add
+  - heroku auth:whoami
+  - git commit -m "Testing"
   - yes | git push heroku master
 before_install:
 - "/sbin/start-stop-daemon --start --quiet --pidfile /tmp/custom_xvfb_99.pid --make-pidfile
