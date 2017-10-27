@@ -35,6 +35,8 @@ before_script:
 - export DISPLAY=:99.0
 - sh -e /etc/init.d/xvfb start
 - sleep 3
+- 'if [ "$TRAVIS_PULL_REQUEST" != "false" ]; then echo "This is a
+      pull request. No deployment will be done."; exit 0; fi'
 - wget -qO- https://toolbelt.heroku.com/install-ubuntu.sh | sh
 - git remote add heroku git@heroku.com:tictactoe-staging-ddos.git
 - echo "Host heroku.com" >> ~/.ssh/config
