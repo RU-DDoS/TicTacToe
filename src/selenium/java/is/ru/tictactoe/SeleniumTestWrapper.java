@@ -11,13 +11,13 @@ import org.junit.AfterClass;
 import org.junit.BeforeClass;
 
 public abstract class SeleniumTestWrapper {
-  static ChromeDriver driver;
+  static PhantomJSDriver driver;
   static String baseUrl;
   static String port;
 
   @BeforeClass
   public static void openBrowser() {
-    driver = new ChromeDriver(chromeOptions);
+    //driver = new ChromeDriver(chromeOptions);
     driver = new PhantomJSDriver();
     driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
 
