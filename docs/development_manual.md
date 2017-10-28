@@ -48,6 +48,6 @@ Contact Matthías (matthiasd16@ru.is) to gain access
 ```
 
 ### Slack
-Join the teams slack channel at <https://l2n3rd.slack.com>
+Join the teams slack channel at <https://l2n3rd.slack.com> 
 Contact any member of the team to gain access.
 Access the Travis slack app settings here: <https://l2n3rd.slack.com/services/B7NUQNQK0>
