@@ -52,6 +52,10 @@ Join the teams slack channel at <https://l2n3rd.slack.com>
 Contact any member of the team to gain access.  
 Access the Travis slack app settings here: <https://l2n3rd.slack.com/services/B7NUQNQK0>
 
+### Codecov
+In order to view the full history of code coverage reports you need to log in to [CodeCov](https://codecov.io) using your Github credentials.  
+From there you can view the full [history](https://codecov.io/gh/RU-DDoS/TicTacToe) of the project.
+
 ### Selenium
 In order to run Selenium tests locally you will need  to install both [Chrome](https://www.google.com/chrome/browser/features.html?brand=CHBD&gclid=CjwKCAjw-NXPBRB4EiwAVNRLKuDAUlRgcNqBHzC9UJ1FtyCEqArTz_D3vLo-csV6oBIyI9ln9am_hRoCY94QAvD_BwE&dclid=CJrR0_OMltcCFQSZdwodMpQOsQ) and [ChromeDriver](https://sites.google.com/a/chromium.org/chromedriver/downloads).  
 If you are on windows you must add them to path in your system environment variables.  
