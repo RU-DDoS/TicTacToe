@@ -46,7 +46,7 @@ before_script:
 - heroku keys:clear
 - yes | heroku keys:add
 - heroku auth:whoami
-- yes | git push heroku $TRAVIS_BRANCH:master
+- yes | git push -f heroku $TRAVIS_BRANCH:master
 before_install:
 - "/sbin/start-stop-daemon --start --quiet --pidfile /tmp/custom_xvfb_99.pid --make-pidfile
   --background --exec /usr/bin/Xvfb -- :99 -ac -screen 0 1280x1024x16"
