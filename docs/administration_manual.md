@@ -1,9 +1,12 @@
 # Administration Manual
 
+## Versions
+The master branch will always contain the most recent running and stable version of the project. There are no promises made that versions running on other branches will be working nor stable.
+
 ## Dependencies
 Please see the [Development manual](https://github.com/RU-DDoS/TicTacToe/blob/docs/docs/development_manual.md) for dependencies.
 
-### Uploading changes
+## Uploading changes
 The following workflow is required for adding new features or changes to the project
 1. Create a new branch with a informative name as to what you wish to accomplish.
 2. Make your changes and push them to your branch.
