@@ -3,7 +3,7 @@
 It was decided to implement the game using a simple 3 layer design method, e.g UI-, business- and data-layer. Since the game is meant to be simple it will not include custom user names nor a high score table and therefore there is no need for a data-layer. The game will be coded using TDD along with a simple console UI but when the logic is complete the console UI will be swapped out for a gui to be able to run the program on the web.
 
 ## Back-end
-The logic for the website will be written in Java whilst keeping in mind that all the functionality will be accessed through asynchronous calls with Javascript.
+The logic for the website will be written in Java whilst keeping in mind that all the functionality will be accessed through asynchronous calls with Javascript. Since the game is so simple the underlying structures will not be broken down into smaller units as that will only complicate the program as a whole. Therefore there will be a single service class which will keep track of the board, the players and the state of the game.
 
 ## Front-end
 The website will be written in HTML, CSS and Javascript. It should be as simple as possible for it's only purpose is running the game itself. The game board will have 3x3 buttons (boxes). If one is clicked it will either be marked with *X* or *O*.
