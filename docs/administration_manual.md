@@ -1,4 +1,4 @@
-# Administration report
+# Administration Manual
 
 ## Deploy
 Deployment is automatic through Heroku
