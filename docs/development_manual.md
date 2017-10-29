@@ -53,7 +53,8 @@ Contact any member of the team to gain access.
 Access the Travis slack app settings here: <https://l2n3rd.slack.com/services/B7NUQNQK0>
 
 ### Selenium
-In order to run Selenium tests locally you will need  to install both [Chrome](https://www.google.com/chrome/browser/features.html?brand=CHBD&gclid=CjwKCAjw-NXPBRB4EiwAVNRLKuDAUlRgcNqBHzC9UJ1FtyCEqArTz_D3vLo-csV6oBIyI9ln9am_hRoCY94QAvD_BwE&dclid=CJrR0_OMltcCFQSZdwodMpQOsQ) and [ChromeDriver](https://sites.google.com/a/chromium.org/chromedriver/downloads). If you are on windows you must add them to path in your system environment variables.  
+In order to run Selenium tests locally you will need  to install both [Chrome](https://www.google.com/chrome/browser/features.html?brand=CHBD&gclid=CjwKCAjw-NXPBRB4EiwAVNRLKuDAUlRgcNqBHzC9UJ1FtyCEqArTz_D3vLo-csV6oBIyI9ln9am_hRoCY94QAvD_BwE&dclid=CJrR0_OMltcCFQSZdwodMpQOsQ) and [ChromeDriver](https://sites.google.com/a/chromium.org/chromedriver/downloads).  
+If you are on windows you must add them to path in your system environment variables.  
 From there you should be able to run the following to run the Selenium tests:
 ```sh
 	$ ./gradlew check
