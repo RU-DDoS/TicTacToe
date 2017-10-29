@@ -3,6 +3,7 @@
 ## Getting Started
 
 ### Github
+Install [Git](https://git-scm.com/downloads)  
 Clone or download the repository
 <https://github.com/RU-DDoS/TicTacToe>  
 Contact either Matthías (matthiasd16@ru.is) or Birkir (birkirk16@ru.is) to gain access.
@@ -40,14 +41,34 @@ This builds the test files as well.
 You should now have access to the repository build history on Travis.
 
 ### Heroku
-Log in at <https://dashboard.heroku.com/apps>  
-Contact Matthías (matthiasd16@ru.is) to gain access
-```sh
-  $ git remote rm heroku
-  $ heroku git:remote -a tictactoe-hugb-12345
-```
+The application is hosted on Heroku, there are two versions of the app both of them are publically available and you therefore don't need to sign up for Heroku in order to access or update them. If you need access to the Heroku settings please contact Matthías (matthiasd16@ru.is).
+
+[Staging](https://tictactoe-staging-ddos.herokuapp.com)
+
+[Production](https://tictactoe-production-ddos.herokuapp.com)
 
 ### Slack
 Join the teams slack channel at <https://l2n3rd.slack.com>  
 Contact any member of the team to gain access.  
 Access the Travis slack app settings here: <https://l2n3rd.slack.com/services/B7NUQNQK0>
+
+### Selenium
+In order to run Selenium tests locally you will need  to install both [Chrome](https://www.google.com/chrome/browser/features.html?brand=CHBD&gclid=CjwKCAjw-NXPBRB4EiwAVNRLKuDAUlRgcNqBHzC9UJ1FtyCEqArTz_D3vLo-csV6oBIyI9ln9am_hRoCY94QAvD_BwE&dclid=CJrR0_OMltcCFQSZdwodMpQOsQ) and [ChromeDriver](https://sites.google.com/a/chromium.org/chromedriver/downloads). If you are on windows you must add them to path in your system environment variables.  
+From there you should be able to run the following to run the Selenium tests:
+```sh
+	$ ./gradlew check
+	$ ./gradlew selenium
+```
+
+### Uploading changes
+The following workflow is required for adding new features or changes to the project
+1. Create a new branch with a informative name as to what you wish to accomplish.
+2. Make your changes and push them to your branch.
+3. Create a pull request to the master branch when you are satisfied with your changes.
+4. The pull request will trigger Travis to do the following:
++ Build your updated version
++ Run the unit tests
++ Deploy to staging
++ Run end-to-end tests  
+If all these tasks pass then another collaborator can review your code and merge it to the master branch.
+5. When a merge to master is performed an automatic script will kick in and the newest changes will be automatically deployed to the production application.
