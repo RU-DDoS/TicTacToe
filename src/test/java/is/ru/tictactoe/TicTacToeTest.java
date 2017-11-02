@@ -1,7 +1,7 @@
 package is.ru.tictactoe;
 
-import org.junit.Test;
-import static org.junit.Assert.*;
+import org.testng.annotations.*;
+import static org.testng.Assert.*;
 
 public class TicTacToeTest {
 	@Test
@@ -149,11 +149,14 @@ public class TicTacToeTest {
 	public void testGetBoard() {
 		TTTService game = new TTTService();
 
-		char[] board = new char[9];
+		char[] board = game.getBoard();
+		boolean success = true;
 		for(int i = 0; i < 9; i++) {
-			board[i] = (char)(i + '1');
+			if(board[i] != (char)(i + '1')) {
+				success = false;
+			}
 		}
-		assertArrayEquals(board, game.getBoard());
+		assertEquals(true, success);
 	}
 
 	@Test
